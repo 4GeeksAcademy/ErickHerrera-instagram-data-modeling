@@ -31,7 +31,7 @@ class Post(Base):
     __tablename__ = 'posts'
     id = Column(Integer, primary_key=True) 
     title = Column(String(100), nullable=False)  
-    content = Column(String, nullable=False)  
+    content = Column(String(300), nullable=False)  
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False) 
 
 
@@ -42,7 +42,7 @@ class Post(Base):
 class Comment(Base):
     __tablename__ = 'comments'
     id = Column(Integer, primary_key=True)  
-    comment_text = Column(String, nullable=False)  
+    comment_text = Column(String(300), nullable=False)  
     author_id = Column(Integer, ForeignKey('users.id'), nullable=False) 
     post_id = Column(Integer, ForeignKey('posts.id'), nullable=False)  
 
@@ -53,7 +53,7 @@ class Media(Base):
     __tablename__ = 'media'
     id = Column(Integer, primary_key=True)  
     type = Column(Enum('image', 'video', 'audio', name='media_types'), nullable=False) 
-    url = Column(String, nullable=False)  
+    url = Column(String(300), nullable=False)  
     post_id = Column(Integer, ForeignKey('posts.id'), nullable=False)  
 
     post = relationship('Post', back_populates='media')
